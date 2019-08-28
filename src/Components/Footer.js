@@ -8,8 +8,7 @@ const FooterContainer = styled.footer`
   flex-direction: column;
   text-align: center;
   width: 100%;
-  background-color: #000;
-  color: #fff;
+  color: #000;
   padding-bottom: 2rem;
 `;
 
@@ -23,17 +22,6 @@ const Icon = styled.a`
   color: silver;
   font-size: 1.5rem;
   margin: 0 1rem;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 1.5rem;
-  margin: 1rem 0;
-  color: #fff;
-`;
-
-const ContactInfo = styled.p`
-  font-size: 1rem;
-  margin: 0.5rem;
 `;
 
 export default function Footer() {
