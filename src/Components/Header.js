@@ -6,13 +6,20 @@ const HeaderContainer = styled.header`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 2px solid red;
+  background-color: #000;
+  color: #fff;
+  width: 100%;
+`;
+
+const Heading = styled.h1`
+  font-size: 2rem;
+  padding: 1.5rem;
 `;
 
 export default function Header() {
   return (
     <HeaderContainer id="header">
-      Form
+      <Heading>Form</Heading>
     </HeaderContainer>
   )
 };
