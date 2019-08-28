@@ -21,10 +21,15 @@ const Input = styled.input`
   font-size: 1rem;
 `;
 
+const Textarea = styled.textarea`
+  margin: 1rem;
+  font-size: 1rem;
+`;
+
 const Submit = styled.input`
-  background-color: red;
-  color: #fff;
-  border-radius: 1rem;
+  background-color: #c0c0c0;;
+  color: #000;
+  border-radius: 0.3rem;
   padding: 0.2rem;
   font-size: 1rem;
   width: 10rem;
@@ -32,16 +37,73 @@ const Submit = styled.input`
 `;
 
 export default function Form() {
+  // const [userName, setUserName] = React.useState("");
+  // const [phoneNumber, setPhoneNumber] = React.useState("");
+  // const [email, setEmail] = React.useState("");
+  // const [message, setMessage] = React.useState("");
+
+  //Code from: https://zacjones.io/handle-multiple-inputs-in-react-with-hooks
+  const [userInput, setUserInput] = React.useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      userName: "",
+      phoneNumber: "",
+      email: "",
+      message: ""
+    }
+  );
+
+  const handleInputChange = event => {
+    const name = event.target.name;
+    const newValue = event.target.value;
+    setUserInput({ [name]: newValue });
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log(`Name: ${userInput.userName}`);
+    console.log(`Phone: ${userInput.phoneNumber}`);
+    console.log(`E-mail: ${userInput.email}`);
+    console.log(`Message: ${userInput.message}`);
+  }
+
   return (
-    <FormContainer id="form">
-      <Label htmlFor="name">Name:</Label>
-      <Input type="text" name="name" id="name" />
-      <Label htmlFor="number">Phone number:</Label>
-      <Input type="text" name="number" id="number" />
+    <FormContainer id="form" onSubmit={handleSubmit}>
+      <Label htmlFor="userName">Name:</Label>
+      <Input
+        type="text"
+        name="userName"
+        id="userName"
+        value={userInput.userName}
+        onChange={handleInputChange}
+      />
+
+      <Label htmlFor="phoneNumber">Phone number:</Label>
+      <Input
+        type="text"
+        name="phoneNumber"
+        id="phoneNumber"
+        value={userInput.phoneNumber}
+        onChange={handleInputChange}
+      />
+
       <Label htmlFor="email">E-mail:</Label>
-      <Input type="email" name="email" id="email" />
-      <Label htmlFor="password">Password:</Label>
-      <Input type="password" name="password" id="password" />
+      <Input
+        type="email"
+        name="email"
+        id="email"
+        value={userInput.email}
+        onChange={handleInputChange}
+      />
+
+      <Label htmlFor="message">Message:</Label>
+      <Textarea
+        name="message"
+        id="message"
+        value={userInput.message}
+        onChange={handleInputChange}
+      />
+
       <Submit type="submit" value="Submit"/>
     </FormContainer>
   )
